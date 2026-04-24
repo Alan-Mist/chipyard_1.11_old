@@ -15,6 +15,19 @@ ifeq ($(tutorial),asap7)
     INPUT_CONFS       ?= $(TOOLS_CONF) $(TECH_CONF) $(DESIGN_CONFS) $(EXTRA_CONFS)
 endif
 
+
+ifeq ($(tutorial),asap7-openroad)
+    tech_name         ?= asap7
+    CONFIG            ?= TinyRocketConfig
+    TOOLS_CONF        ?= example-openroad.yml
+    TECH_CONF         ?= example-asap7.yml
+    DESIGN_CONFS      ?= example-designs/asap7-openroad.yml
+    VLSI_OBJ_DIR      ?= build-asap7-openroad
+    INPUT_CONFS       ?= $(TOOLS_CONF) $(TECH_CONF) $(DESIGN_CONFS) $(EXTRA_CONFS)
+    # Yosys compatibility for CIRCT-generated Verilog
+    ENABLE_YOSYS_FLOW  = 1
+endif
+
 ifeq ($(tutorial),sky130-commercial)
     tech_name         ?= sky130
     CONFIG            ?= TinyRocketConfig
