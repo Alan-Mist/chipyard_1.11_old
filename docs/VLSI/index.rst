@@ -12,6 +12,7 @@ In particular, we aim to support the Hammer physical design generator flow.
    Hammer
    Basic-Flow
    ASAP7-Tutorial
+   ASAP7-OpenROAD-Tutorial
    Sky130-Commercial-Tutorial
    Sky130-OpenROAD-Tutorial
    Advanced-Usage

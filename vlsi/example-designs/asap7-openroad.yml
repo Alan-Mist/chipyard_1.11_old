@@ -1,0 +1,33 @@
+# Override configurations in ../example-asap7.yml for an OpenROAD-based ASAP7 flow.
+
+# Relax the target period so OpenROAD can converge more robustly on student machines.
+vlsi.inputs.clocks: [
+  {name: "clock_uncore_clock", period: "2.5ns", uncertainty: "0.2ns"}
+]
+
+# OpenROAD flow knobs tuned for better routability/timing QoR trade-offs.
+par.openroad:
+  timing_driven: true
+  create_archive_mode: none
+  write_reports: true
+
+  floorplan_mode: generate
+  macro_placement.halo: [12, 12]
+
+  global_placement.timing_driven: true
+  global_placement.routability_driven: true
+  global_placement.routing_adjustment: 0.25
+
+  detailed_placement.placement_padding: 2
+  clock_tree.placement_padding: 1
+  clock_tree_resize.placement_padding: 0
+
+  clock_tree_resize.setup_margin: 0.00
+  clock_tree_resize.hold_margin: 0.10
+  global_route_resize.hold_margin: 0.30
+  global_route.routing_adjustment: 0.18
+
+# ASAP7 tutorial flow in this repository typically uses commercial DRC/LVS tools.
+# Keep DRC/LVS generation disabled for the OpenROAD teaching flow by default.
+drc.magic.generate_only: true
+lvs.netgen.generate_only: true
